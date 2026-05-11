@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { MessageSquare } from 'lucide-react'
 
 const AIChatPage = React.lazy(() => import('./AIChatPage'))

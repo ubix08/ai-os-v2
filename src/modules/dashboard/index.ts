@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { LayoutDashboard } from 'lucide-react'
 
 const DashboardPage = React.lazy(() => import('./DashboardPage'))

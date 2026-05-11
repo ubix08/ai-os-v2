@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { Settings } from 'lucide-react'
 
 const SettingsPage = React.lazy(() => import('./SettingsPage'))

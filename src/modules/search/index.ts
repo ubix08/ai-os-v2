@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { Search } from 'lucide-react'
 
 const SearchPage = React.lazy(() => import('./SearchPage'))

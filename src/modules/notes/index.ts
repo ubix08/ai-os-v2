@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { FileText } from 'lucide-react'
 
 const NotesPage = React.lazy(() => import('./NotesPage'))

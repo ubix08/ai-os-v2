@@ -1,5 +1,5 @@
 import React from 'react'
-import { registerModule } from '@/modules'
+import { registerModule } from '@/modules/registry'
 import { ListTodo } from 'lucide-react'
 
 const TasksPage = React.lazy(() => import('./TasksPage'))
