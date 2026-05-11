@@ -44,21 +44,21 @@ export default function DashboardPage() {
     .slice(0, 5)
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-muted-foreground mt-1">Your productivity overview</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Dashboard</h1>
+        <p className="text-sm md:text-base text-muted-foreground mt-0.5 md:mt-1">Your productivity overview</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <StatCard icon={CheckCircle2} label="Tasks Remaining" value={todoCount} color="bg-blue-500/10 text-blue-500" />
         <StatCard icon={TrendingUp} label="Completed Today" value={doneToday} color="bg-green-500/10 text-green-500" />
         <StatCard icon={FileText} label="Total Notes" value={notesCount} color="bg-purple-500/10 text-purple-500" />
         <StatCard icon={Clock} label="Urgent Tasks" value={urgentCount} color="bg-red-500/10 text-red-500" />
       </div>
 
-      <div className="rounded-xl border border-border bg-card p-6">
-        <h2 className="text-lg font-semibold text-foreground mb-4">Recent Tasks</h2>
+      <div className="rounded-xl border border-border bg-card p-4 md:p-6">
+        <h2 className="text-base md:text-lg font-semibold text-foreground mb-3 md:mb-4">Recent Tasks</h2>
         {recentTasks.length === 0 ? (
           <p className="text-muted-foreground text-sm">No pending tasks. Enjoy your day!</p>
         ) : (

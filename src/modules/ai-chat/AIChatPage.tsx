@@ -77,27 +77,27 @@ export default function AIChatPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="p-4 border-b border-border flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Bot className="w-5 h-5 text-primary" />
-          <div>
-            <h2 className="text-sm font-semibold text-foreground">AI Assistant</h2>
-            <p className="text-xs text-muted-foreground">
+      <div className="p-3 md:p-4 border-b border-border flex items-center justify-between">
+        <div className="flex items-center gap-2 md:gap-3 min-w-0">
+          <Bot className="w-4 h-4 md:w-5 md:h-5 text-primary flex-shrink-0" />
+          <div className="min-w-0">
+            <h2 className="text-sm font-semibold text-foreground truncate">AI Assistant</h2>
+            <p className="text-xs text-muted-foreground truncate">
               {aiConfig ? `Using ${aiConfig.provider}` : 'No provider configured'}
             </p>
           </div>
         </div>
-        <button className="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors">
+        <button className="p-2 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors flex-shrink-0">
           <Settings2 className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4">
         {messages.length === 0 && (
           <div className="flex items-center justify-center h-full">
-            <div className="text-center">
-              <Sparkles className="w-12 h-12 text-muted-foreground/30 mx-auto mb-3" />
-              <p className="text-lg font-medium text-foreground">AI Assistant</p>
+            <div className="text-center px-4">
+              <Sparkles className="w-8 h-8 md:w-12 md:h-12 text-muted-foreground/30 mx-auto mb-3" />
+              <p className="text-base md:text-lg font-medium text-foreground">AI Assistant</p>
               <p className="text-sm text-muted-foreground mt-1 max-w-md">
                 Ask me anything — I can help with tasks, notes, or general questions.
                 {!aiConfig && ' Configure an API key in Settings to get started.'}
@@ -123,7 +123,7 @@ export default function AIChatPage() {
         <div ref={bottomRef} />
       </div>
 
-      <div className="p-4 border-t border-border">
+      <div className="p-3 md:p-4 border-t border-border">
         <div className="flex gap-2">
           <textarea
             value={input}
@@ -131,12 +131,12 @@ export default function AIChatPage() {
             onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             rows={1}
-            className="flex-1 px-4 py-2.5 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm resize-none"
+            className="flex-1 px-3 md:px-4 py-2.5 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm resize-none"
           />
           <button
             onClick={handleSend}
             disabled={!input.trim() || loading}
-            className="px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-3 md:px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
           >
             <Send className="w-4 h-4" />
           </button>

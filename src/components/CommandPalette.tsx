@@ -52,10 +52,10 @@ export function CommandPalette() {
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 w-full max-w-lg"
+            className="fixed inset-0 md:top-[15%] md:left-1/2 md:-translate-x-1/2 md:inset-auto w-full md:max-w-lg md:rounded-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <Command className="rounded-xl border border-border bg-popover shadow-2xl overflow-hidden">
+            <Command className="h-full md:h-auto md:rounded-xl border border-border bg-popover shadow-2xl overflow-hidden flex flex-col">
               <div className="flex items-center border-b border-border px-3">
                 <Search className="w-4 h-4 text-muted-foreground mr-2" />
                 <Command.Input
@@ -67,7 +67,7 @@ export function CommandPalette() {
                 />
               </div>
 
-              <Command.List className="max-h-80 overflow-y-auto p-2">
+              <Command.List className="flex-1 md:max-h-80 overflow-y-auto p-2">
                 <Command.Empty className="py-6 text-center text-sm text-muted-foreground">
                   No results found.
                 </Command.Empty>

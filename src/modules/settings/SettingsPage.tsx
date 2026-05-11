@@ -6,26 +6,26 @@ export default function SettingsPage() {
   const { theme, toggleTheme, aiConfig, setAiConfig, licenseKey, setLicenseKey, isPro, productConfig } = useAppStore()
 
   return (
-    <div className="p-6 max-w-3xl space-y-8">
+    <div className="p-4 md:p-6 max-w-3xl space-y-6 md:space-y-8">
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-        <p className="text-muted-foreground mt-1">Configure your AI OS experience</p>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Settings</h1>
+        <p className="text-sm md:text-base text-muted-foreground mt-0.5 md:mt-1">Configure your AI OS experience</p>
       </motion.div>
 
-      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Palette className="w-5 h-5 text-primary" />
+      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-3 md:space-y-4">
+        <h2 className="text-base md:text-lg font-semibold text-foreground flex items-center gap-2">
+          <Palette className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           Appearance
         </h2>
         <div className="rounded-xl border border-border bg-card p-4">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="min-w-0">
               <p className="text-sm font-medium text-foreground">Theme</p>
               <p className="text-xs text-muted-foreground mt-0.5">Switch between dark and light mode</p>
             </div>
             <button
               onClick={toggleTheme}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-accent text-foreground text-sm hover:bg-accent/80 transition-colors"
+              className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg bg-accent text-foreground text-sm hover:bg-accent/80 transition-colors flex-shrink-0"
             >
               {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
               {theme === 'dark' ? 'Light' : 'Dark'}
@@ -34,13 +34,13 @@ export default function SettingsPage() {
         </div>
       </motion.section>
 
-      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Bot className="w-5 h-5 text-primary" />
+      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-3 md:space-y-4">
+        <h2 className="text-base md:text-lg font-semibold text-foreground flex items-center gap-2">
+          <Bot className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           AI Provider
         </h2>
         <div className="rounded-xl border border-border bg-card p-4 space-y-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <p className="text-sm font-medium text-foreground">Provider</p>
               <p className="text-xs text-muted-foreground mt-0.5">Select your AI backend</p>
@@ -48,7 +48,7 @@ export default function SettingsPage() {
             <select
               value={aiConfig?.provider ?? 'openai'}
               onChange={(e) => setAiConfig({ ...aiConfig, provider: e.target.value as any, model: aiConfig?.model ?? 'gpt-4o' })}
-              className="px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+              className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
             >
               <option value="openai">OpenAI</option>
               <option value="anthropic">Anthropic</option>
@@ -80,35 +80,35 @@ export default function SettingsPage() {
         </div>
       </motion.section>
 
-      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Key className="w-5 h-5 text-primary" />
+      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-3 md:space-y-4">
+        <h2 className="text-base md:text-lg font-semibold text-foreground flex items-center gap-2">
+          <Key className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           License
         </h2>
         <div className="rounded-xl border border-border bg-card p-4">
           <div className="flex items-center justify-between mb-3">
-            <div>
+            <div className="min-w-0">
               <p className="text-sm font-medium text-foreground">Status</p>
               <p className="text-xs text-muted-foreground mt-0.5">
                 {isPro ? 'Pro features unlocked' : 'Free tier — upgrade for Pro features'}
               </p>
             </div>
-            <span className={`px-2.5 py-1 rounded-full text-xs font-medium ${isPro ? 'bg-green-500/10 text-green-500' : 'bg-muted text-muted-foreground'}`}>
+            <span className={`px-2.5 py-1 rounded-full text-xs font-medium flex-shrink-0 ${isPro ? 'bg-green-500/10 text-green-500' : 'bg-muted text-muted-foreground'}`}>
               {isPro ? 'Pro' : 'Free'}
             </span>
           </div>
           {!isPro && (
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 value={licenseKey ?? ''}
                 onChange={(e) => setLicenseKey(e.target.value)}
                 placeholder="Enter license key..."
-                className="flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full sm:flex-1 px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
               />
               <button
                 onClick={() => setLicenseKey('pro-demo')}
-                className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90"
+                className="w-full sm:w-auto px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90"
               >
                 Activate
               </button>
@@ -125,9 +125,9 @@ export default function SettingsPage() {
         </div>
       </motion.section>
 
-      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-        <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-          <Info className="w-5 h-5 text-primary" />
+      <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-3 md:space-y-4">
+        <h2 className="text-base md:text-lg font-semibold text-foreground flex items-center gap-2">
+          <Info className="w-4 h-4 md:w-5 md:h-5 text-primary" />
           About
         </h2>
         <div className="rounded-xl border border-border bg-card p-4">

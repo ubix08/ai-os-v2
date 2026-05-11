@@ -29,7 +29,7 @@ function TaskInput({ onAdd }: { onAdd: (title: string) => void }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
       <div className="relative flex-1">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
@@ -40,22 +40,24 @@ function TaskInput({ onAdd }: { onAdd: (title: string) => void }) {
           className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-sm"
         />
       </div>
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as Task['priority'])}
-        className="px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
-      >
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="urgent">Urgent</option>
-      </select>
-      <button
-        type="submit"
-        className="px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-      >
-        <Plus className="w-4 h-4" />
-      </button>
+      <div className="flex gap-2">
+        <select
+          value={priority}
+          onChange={(e) => setPriority(e.target.value as Task['priority'])}
+          className="flex-1 sm:flex-none px-3 py-2.5 rounded-lg border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+        >
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+        <button
+          type="submit"
+          className="px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity flex-shrink-0"
+        >
+          <Plus className="w-4 h-4" />
+        </button>
+      </div>
     </form>
   )
 }
@@ -141,36 +143,36 @@ export default function TasksPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="flex items-center justify-between">
+        <div className="flex items-start md:items-center justify-between gap-3">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Tasks</h1>
-            <p className="text-muted-foreground text-sm mt-1">
+            <h1 className="text-2xl md:text-3xl font-bold text-foreground">Tasks</h1>
+            <p className="text-xs md:text-sm text-muted-foreground mt-0.5 md:mt-1">
               {stats.todo} remaining · {stats.done} completed · {stats.total} total
             </p>
           </div>
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 text-primary text-sm font-medium hover:bg-primary/20 transition-colors"
+            className="flex items-center gap-2 px-3 md:px-4 py-2 rounded-lg bg-primary/10 text-primary text-xs md:text-sm font-medium hover:bg-primary/20 transition-colors flex-shrink-0"
           >
-            <Sparkles className="w-4 h-4" />
-            AI Suggest
+            <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4" />
+            <span className="hidden sm:inline">AI Suggest</span>
           </motion.button>
         </div>
       </motion.div>
 
       <TaskInput onAdd={handleAdd} />
 
-      <div className="flex items-center justify-between">
-        <div className="flex gap-1">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex flex-wrap gap-1">
           {statusFilters.map((s) => (
             <button
               key={s}
               onClick={() => setFilter(s)}
               className={cn(
-                'px-3 py-1.5 rounded-md text-xs font-medium transition-colors',
+                'px-2.5 md:px-3 py-1.5 rounded-md text-xs font-medium transition-colors',
                 filter === s ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground',
               )}
             >
@@ -178,20 +180,20 @@ export default function TasksPage() {
             </button>
           ))}
         </div>
-        <div className="flex items-center gap-2">
-          <div className="relative">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="relative flex-1 sm:flex-none">
             <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="pl-8 pr-3 py-1.5 rounded-md border border-border bg-background text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 w-40"
+              className="w-full sm:w-40 pl-8 pr-3 py-1.5 rounded-md border border-border bg-background text-foreground text-xs placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
           </div>
           <button
             onClick={() => setSortOrder((s) => s === 'newest' ? 'oldest' : 'newest')}
-            className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+            className="p-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors flex-shrink-0"
           >
             <ArrowUpDown className="w-4 h-4" />
           </button>

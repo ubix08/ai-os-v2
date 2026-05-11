@@ -16,8 +16,10 @@ interface AppState {
   // Sidebar
   sidebarOpen: boolean
   sidebarWidth: number
+  mobileSidebarOpen: boolean
   toggleSidebar: () => void
   setSidebarWidth: (width: number) => void
+  setMobileSidebarOpen: (open: boolean) => void
 
   // Active module
   activeModule: string
@@ -52,8 +54,10 @@ export const useAppStore = create<AppState>()(
 
       sidebarOpen: true,
       sidebarWidth: 260,
+      mobileSidebarOpen: false,
       toggleSidebar: () => set((s) => ({ sidebarOpen: !s.sidebarOpen })),
       setSidebarWidth: (width) => set({ sidebarWidth: width }),
+      setMobileSidebarOpen: (open) => set({ mobileSidebarOpen: open }),
 
       activeModule: 'dashboard',
       setActiveModule: (moduleId) => set({ activeModule: moduleId }),

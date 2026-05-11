@@ -5,28 +5,36 @@ import { Plus, Search, Star, Trash2, FileText, Sparkles } from 'lucide-react'
 import { formatRelativeTime, cn } from '@/lib/utils'
 
 function NoteEditor({ noteId }: { noteId: string }) {
-  const { notes, updateNote } = useNoteStore()
+  const { notes, updateNote, setActiveNote } = useNoteStore()
   const note = notes.find((n) => n.id === noteId)
 
   if (!note) return null
 
   return (
     <div className="flex-1 flex flex-col h-full">
-      <div className="p-6 border-b border-border">
+      <div className="p-3 md:p-6 border-b border-border">
+        <div className="flex items-center gap-2 mb-2 md:hidden">
+          <button
+            onClick={() => setActiveNote(null)}
+            className="p-1 rounded-md hover:bg-accent text-muted-foreground"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <span className="text-xs text-muted-foreground">Notes</span>
+        </div>
         <input
           type="text"
           value={note.title}
           onChange={(e) => updateNote(note.id, { title: e.target.value })}
           placeholder="Note title..."
-          className="w-full text-2xl font-bold bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
+          className="w-full text-xl md:text-2xl font-bold bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
         />
-        <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+        <div className="flex items-center gap-3 mt-1 md:mt-2 text-xs text-muted-foreground">
           <span>Created {formatRelativeTime(note.createdAt)}</span>
-          <span>·</span>
-          <span>Updated {formatRelativeTime(note.updatedAt)}</span>
+          <span className="hidden md:inline">· Updated {formatRelativeTime(note.updatedAt)}</span>
         </div>
       </div>
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-3 md:p-6">
         <textarea
           value={note.content}
           onChange={(e) => updateNote(note.id, { content: e.target.value })}
@@ -58,11 +66,15 @@ export default function NotesPage() {
   const activeNote = notes.find((n) => n.id === activeNoteId)
 
   return (
-    <div className="flex h-full">
-      <div className="w-80 border-r border-border flex flex-col">
-        <div className="p-4 border-b border-border space-y-3">
+    <div className="flex flex-col md:flex-row h-full">
+      {/* Note list - shown on mobile only when no active note */}
+      <div className={cn(
+        'w-full md:w-80 border-b md:border-b-0 md:border-r border-border flex flex-col',
+        activeNote && 'hidden md:flex',
+      )}>
+        <div className="p-3 md:p-4 border-b border-border space-y-3">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground">Notes</h2>
+            <h2 className="text-base md:text-lg font-semibold text-foreground">Notes</h2>
             <button
               onClick={handleAdd}
               className="p-1.5 rounded-md hover:bg-accent text-muted-foreground hover:text-foreground transition-colors"
@@ -133,13 +145,13 @@ export default function NotesPage() {
       {activeNote ? (
         <NoteEditor noteId={activeNote.id} />
       ) : (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center">
-            <FileText className="w-16 h-16 text-muted-foreground/20 mx-auto mb-4" />
-            <p className="text-lg text-muted-foreground">Select a note or create a new one</p>
+        <div className={cn('flex-1 items-center justify-center', activeNote ? 'hidden md:flex' : 'flex')}>
+          <div className="text-center px-4">
+            <FileText className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground/20 mx-auto mb-3 md:mb-4" />
+            <p className="text-base md:text-lg text-muted-foreground">Select a note or create a new one</p>
             <button
               onClick={handleAdd}
-              className="mt-4 flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium mx-auto hover:opacity-90 transition-opacity"
+              className="mt-3 md:mt-4 flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium mx-auto hover:opacity-90 transition-opacity"
             >
               <Plus className="w-4 h-4" />
               New Note

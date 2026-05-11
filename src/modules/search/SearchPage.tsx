@@ -19,28 +19,28 @@ export default function SearchPage() {
 
   if (!query.trim()) {
     return (
-      <div className="p-6">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <div className="relative">
-            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <input
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search across tasks, notes, and more..."
-              autoFocus
-              className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-lg"
-            />
-          </div>
-          <div className="text-center py-12">
-            <SearchIcon className="w-16 h-16 text-muted-foreground/20 mx-auto mb-4" />
-            <p className="text-lg text-muted-foreground">Start typing to search</p>
-            <p className="text-sm text-muted-foreground/60 mt-1">
-              Results from Tasks, Notes, and AI Chat
-            </p>
-          </div>
+    <div className="p-4 md:p-6">
+      <div className="max-w-2xl mx-auto space-y-4 md:space-y-6">
+        <div className="relative">
+          <SearchIcon className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search across tasks, notes, and more..."
+            autoFocus
+            className="w-full pl-10 md:pl-12 pr-4 py-3 md:py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-base md:text-lg"
+          />
+        </div>
+        <div className="text-center py-8 md:py-12">
+          <SearchIcon className="w-12 h-12 md:w-16 md:h-16 text-muted-foreground/20 mx-auto mb-3 md:mb-4" />
+          <p className="text-base md:text-lg text-muted-foreground">Start typing to search</p>
+          <p className="text-xs md:text-sm text-muted-foreground/60 mt-1">
+            Results from Tasks, Notes, and AI Chat
+          </p>
         </div>
       </div>
+    </div>
     )
   }
 
@@ -49,26 +49,26 @@ export default function SearchPage() {
   const noteResults = notes.filter((n) => n.title.toLowerCase().includes(q) || n.content.toLowerCase().includes(q))
 
   return (
-    <div className="p-6">
-      <div className="max-w-2xl mx-auto space-y-6">
+    <div className="p-4 md:p-6">
+      <div className="max-w-2xl mx-auto space-y-4 md:space-y-6">
         <div className="relative">
-          <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <SearchIcon className="absolute left-3 md:left-4 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-muted-foreground" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search..."
             autoFocus
-            className="w-full pl-12 pr-10 py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-lg"
+            className="w-full pl-10 md:pl-12 pr-10 py-3 md:py-3.5 rounded-xl border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 text-base md:text-lg"
           />
           {query && (
-            <button onClick={() => setQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
+            <button onClick={() => setQuery('')} className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
               <X className="w-4 h-4" />
             </button>
           )}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-4 md:space-y-6">
           {taskResults.length > 0 && (
             <div>
               <h3 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-2">
