@@ -1,0 +1,25 @@
+{
+  "productId": "personal-os",
+  "name": "Personal OS",
+  "tagline": "Your Personal Productivity Hub",
+  "description": "Tasks, notes, and AI assistance for daily life",
+  "version": "2.0.0",
+  "theme": {
+    "accentColor": "#06b6d4",
+    "accentHover": "#0891b2",
+    "sidebarWidth": 260,
+    "fontFamily": "Inter"
+  },
+  "enabledModules": ["dashboard", "tasks", "notes", "ai-chat", "search", "settings"],
+  "proModules": ["ai-chat"],
+  "branding": {
+    "logo": "🧠",
+    "favicon": "/favicon.svg",
+    "companyName": "Personal OS"
+  },
+  "license": {
+    "freeModules": ["dashboard", "tasks", "notes", "search", "settings"],
+    "proPrice": 19,
+    "proFeatures": ["AI Chat", "Unlimited Notes", "Priority Support"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "productId": "freelancer-os",
+  "name": "Freelancer OS",
+  "tagline": "Your Freelance Command Center",
+  "description": "Manage clients, projects, invoices, and tasks",
+  "version": "2.0.0",
+  "theme": {
+    "accentColor": "#8b5cf6",
+    "accentHover": "#7c3aed",
+    "sidebarWidth": 280,
+    "fontFamily": "Inter"
+  },
+  "enabledModules": ["dashboard", "tasks", "notes", "ai-chat", "search", "settings"],
+  "proModules": ["ai-chat"],
+  "branding": {
+    "logo": "💼",
+    "favicon": "/favicon.svg",
+    "companyName": "Freelancer OS"
+  },
+  "license": {
+    "freeModules": ["dashboard", "tasks", "notes", "search", "settings"],
+    "proPrice": 49,
+    "proFeatures": ["AI Chat", "Invoice Generation", "Multi-Agent Collaboration", "Client Management"]
+  }
+}

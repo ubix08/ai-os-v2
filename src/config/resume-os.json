@@ -1,0 +1,25 @@
+{
+  "productId": "resume-os",
+  "name": "Resume OS",
+  "tagline": "AI-Powered Resume Builder",
+  "description": "Build professional resumes with AI assistance",
+  "version": "2.0.0",
+  "theme": {
+    "accentColor": "#3b82f6",
+    "accentHover": "#2563eb",
+    "sidebarWidth": 260,
+    "fontFamily": "Inter"
+  },
+  "enabledModules": ["dashboard", "tasks", "notes", "search", "settings"],
+  "proModules": ["ai-chat"],
+  "branding": {
+    "logo": "📄",
+    "favicon": "/favicon.svg",
+    "companyName": "Resume OS"
+  },
+  "license": {
+    "freeModules": ["dashboard", "tasks", "notes", "search", "settings"],
+    "proPrice": 29,
+    "proFeatures": ["AI Chat", "AI Resume Review", "Multi-Agent Orchestration"]
+  }
+}
